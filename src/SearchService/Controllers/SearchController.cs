@@ -36,7 +36,7 @@ public class SearchController : ControllerBase
             "finished" => query.Match(x => x.AuctionEnd < DateTime.UtcNow),
             "endingsoon" => query.Match(x => x.AuctionEnd < DateTime.UtcNow.AddHours(6) 
                 && x.AuctionEnd > DateTime.UtcNow),
-            _ =>  query.Match(x => x.AuctionEnd > DateTime.UtcNow),
+            _ =>  query,
         };
 
         var result = await query.ExecuteAsync();
