@@ -27,6 +27,7 @@ public class AuctionsController : ControllerBase
         _publishEndpoint = publishEndpoint;
     }
     
+    [Authorize]
     [HttpGet]
     public async Task<ActionResult<List<AuctionDto>>> GetAllAuctions(string date)
     {
@@ -42,6 +43,7 @@ public class AuctionsController : ControllerBase
         return await query.ProjectTo<AuctionDto>(_mapper.ConfigurationProvider).ToListAsync();
     }
 
+    [Authorize]
     [HttpGet("{id}")]
     public async Task<ActionResult<AuctionDto>> GetAuctionById(Guid id)
     {

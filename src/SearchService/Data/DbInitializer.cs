@@ -29,9 +29,9 @@ public class DbInitializer
 
         //     var options = new JsonSerializerOptions{PropertyNameCaseInsensitive = true};
 
-        //     var items = JsonSerializer.Deserialize<List<Item>>(itemData, options);
+        //     var newitems = JsonSerializer.Deserialize<List<Item>>(itemData, options);
             
-        //     await DB.SaveAsync(items);
+        //     await DB.SaveAsync(newitems);
         // }
 
         using var scope = app.Services.CreateScope();
