@@ -11,6 +11,7 @@ public class DbInitializer
 {
     public static async Task InitDb(WebApplication app)
     {
+        Console.WriteLine(app.Configuration.GetConnectionString("MongoDbConnection"));
         await DB.InitAsync("SearchDb", MongoClientSettings
         .FromConnectionString(app.Configuration.GetConnectionString("MongoDbConnection")));
 
@@ -22,17 +23,17 @@ public class DbInitializer
 
         var count = await DB.CountAsync<Item>();
 
-        // if(count == 0)
-        // {
-        //     Console.WriteLine("No data - will attempt to seed");
-        //     var itemData = await File.ReadAllTextAsync("Data/auctions.json");
+        if(count == 0)
+        {
+            Console.WriteLine("No data - will attempt to seed");
+            var itemData = await File.ReadAllTextAsync("Data/auctions.json");
 
-        //     var options = new JsonSerializerOptions{PropertyNameCaseInsensitive = true};
+            var options = new JsonSerializerOptions{PropertyNameCaseInsensitive = true};
 
-        //     var newitems = JsonSerializer.Deserialize<List<Item>>(itemData, options);
+            var newitems = JsonSerializer.Deserialize<List<Item>>(itemData, options);
             
-        //     await DB.SaveAsync(newitems);
-        // }
+            await DB.SaveAsync(newitems);
+        }
 
         using var scope = app.Services.CreateScope();
 
