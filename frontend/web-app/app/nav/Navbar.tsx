@@ -14,7 +14,7 @@ export default function Navbar() {
       <div>
         <Search />
       </div>
-      <div>Right</div>
+      <div>Login</div>
     </header>
   );
 }
