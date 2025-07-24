@@ -1,9 +1,12 @@
-"use client";
-
+import { getCurrentUser } from "../actions/authActions";
+import LoginButton from "./LoginButton";
 import Logo from "./Logo";
 import Search from "./Search";
+import UserActions from "./UserActions";
 
-export default function Navbar() {
+export default async function Navbar() {
+  const user = await getCurrentUser();
+
   return (
     <header
       className="sticky top-0 z-50 flex justify-between 
@@ -11,10 +14,8 @@ export default function Navbar() {
       shadow-md"
     >
       <Logo />
-      <div>
-        <Search />
-      </div>
-      <div>Login</div>
+      <Search />
+      {user ? <UserActions user={user} /> : <LoginButton />}
     </header>
   );
 }

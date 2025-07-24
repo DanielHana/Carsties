@@ -17,9 +17,8 @@ public static class Config
             new ApiScope("auctionApp", "Auction app full access"),
         };
 
-    public static IEnumerable<Client> Clients =>
-        new Client[]
-        {
+    public static IEnumerable<Client> Clients(IConfiguration config) =>
+        [
             new Client
             {
                 ClientId = "postman",
@@ -42,5 +41,5 @@ public static class Config
                 AccessTokenLifetime = 3600*24*30,
                 AlwaysIncludeUserClaimsInIdToken = true,
             }
-        };
+        ];
 }

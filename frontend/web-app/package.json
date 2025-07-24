@@ -10,6 +10,7 @@
     "postinstall": "flowbite-react patch"
   },
   "dependencies": {
+    "@simplewebauthn/browser": "^9.0.1",
     "flowbite-react": "^0.11.7",
     "next": "15.2.3",
     "next-auth": "^5.0.0-beta.29",
